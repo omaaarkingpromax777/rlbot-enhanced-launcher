@@ -1,0 +1,38 @@
+[project]
+name = "rlbot-enhanced-launcher"
+version = "0.1.0"
+description = "RLBot V5 Enhanced Launcher: manage, rank, train and play against RLBot/RLGym bots"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "rlbot==2.0.0b57",
+  "PySide6>=6.8",
+  "openskill>=6",
+  "requests>=2.31",
+  "platformdirs>=4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+rlbot-launcher = "rlbot_launcher.__main__:main"
+rlbot-launcher-calibrate = "rlbot_launcher.calibration.runner:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+rlbot_launcher = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
