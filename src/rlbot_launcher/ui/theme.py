@@ -28,8 +28,8 @@ QPushButton#primary:hover {{ background: #2563eb; }}
 QPushButton#danger {{ background: #b42318; border: none; color: white; }}
 QPushButton#chip {{ border-radius: 14px; padding: 5px 12px; font-size: 12px; }}
 QPushButton#chip:checked {{ background: {ACCENT}; border-color: {ACCENT}; color: white; }}
-QLineEdit, QComboBox, QSpinBox {{ background: {PANEL_2}; border: 1px solid {BORDER}; border-radius: 8px; padding: 7px 10px; }}
-QLineEdit:focus, QComboBox:focus, QSpinBox:focus {{ border-color: {ACCENT}; }}
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox {{ background: {PANEL_2}; border: 1px solid {BORDER}; border-radius: 8px; padding: 7px 10px; }}
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus {{ border-color: {ACCENT}; }}
 QComboBox QAbstractItemView {{ background: {PANEL_2}; selection-background-color: {ACCENT}; }}
 QTableView, QListWidget {{ background: {PANEL}; border: 1px solid {BORDER}; border-radius: 10px; gridline-color: {BORDER}; selection-background-color: #23324d; alternate-background-color: #1a1e27; }}
 QTextBrowser {{ background: {PANEL}; border: 1px solid {BORDER}; border-radius: 10px; padding: 8px; }}
@@ -41,5 +41,9 @@ QProgressBar {{ background: {PANEL_2}; border: none; border-radius: 6px; height:
 QProgressBar::chunk {{ background: {ACCENT}; border-radius: 6px; }}
 QCheckBox::indicator {{ width: 16px; height: 16px; }}
 QScrollArea {{ border: none; background: transparent; }}
+QWidget#bracketInner {{ background: {BG}; }}
+QScrollBar:horizontal, QScrollBar:vertical {{ background: {PANEL}; border: none; height: 10px; width: 10px; }}
+QScrollBar::handle {{ background: {BORDER}; border-radius: 5px; min-width: 30px; min-height: 30px; }}
+QScrollBar::add-line, QScrollBar::sub-line {{ width: 0; height: 0; }}
 QStatusBar {{ background: {PANEL}; color: {MUTED}; border-top: 1px solid {BORDER}; }}
 """

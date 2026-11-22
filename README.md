@@ -10,6 +10,7 @@ infrastructure; it does not run its own game servers.
 | Section | What it does |
 |---|---|
 | Play | Team size, map, one-click opponent rank (Bronze → SSL), per-slot bot choice, saved line-ups, Start/Stop Match via `rlbot.managers.MatchManager` |
+| Tournaments | Single-elimination brackets (Round of 16 → quarter-final → semi-final → final) from any set of rank groups, bot count and Mechanical / Non-Mechanical filter; optional human entrant; real matches with automatic score capture, manual score entry, or clearly marked quick simulation; per-entrant W-L, win %, goals and match log; saved history. Rank Challenge: beat a chosen share of a rank group's bots to move to the next group, up to SSL |
 | Bots | Pre-classified catalog (Mechanical / Non-Mechanical, rank groups), details and skill bars, botpack download/update, import of any v5 `bot.toml` folder |
 | Training | Ladder from any rank to any rank; 2 wins promote, 2 losses demote; manual up/down; player rank estimate |
 | Multiplayer | RLLobby session list with search and region/player filters, join by session name or IP:port with password, host on RocketHost servers (Middle East listed first) |

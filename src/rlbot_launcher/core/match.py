@@ -125,6 +125,41 @@ class MatchRunner:
         with self._lock:
             self._manager().start_match(build_config(spec), wait_for_start=False)
 
+    def play_to_end(self, spec: MatchSpec, timeout_s: float = 900.0, on_packet=None) -> tuple[int, int]:
+        """Start a match, block until Rocket League reports it ended, return (blue, orange) goals."""
+        import time
+
+        errors = spec.validate()
+        if errors:
+            raise ValueError("\n".join(errors))
+        with self._lock:
+            mgr = self._manager()
+            mgr.ensure_server_started()
+            if not mgr.rlbot_interface.is_connected:
+                mgr.connect(wants_match_communications=False, wants_ball_predictions=False,
+                            close_between_matches=False)
+                mgr.run(background_thread=True)
+            if on_packet and on_packet not in mgr.rlbot_interface.packet_handlers:
+                mgr.rlbot_interface.packet_handlers.append(on_packet)
+            mgr.packet = None
+            mgr.start_match(build_config(spec), wait_for_start=True)
+        start = time.time()
+        scores = (0, 0)
+        try:
+            while time.time() - start < timeout_s:
+                time.sleep(0.5)
+                pkt = mgr.packet
+                if pkt is None:
+                    continue
+                if len(pkt.teams) >= 2:
+                    scores = (pkt.teams[0].score, pkt.teams[1].score)
+                if str(pkt.match_info.match_phase).endswith("Ended"):
+                    return scores
+            raise TimeoutError("انتهى الوقت قبل نهاية المباراة")
+        finally:
+            if on_packet and on_packet in mgr.rlbot_interface.packet_handlers:
+                mgr.rlbot_interface.packet_handlers.remove(on_packet)
+
     def console(self, command: str) -> None:
         with self._lock:
             mgr = self._manager()

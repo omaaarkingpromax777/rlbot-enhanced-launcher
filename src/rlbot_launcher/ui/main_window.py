@@ -9,9 +9,10 @@ from .pages.bots import BotsPage
 from .pages.multiplayer import MultiplayerPage
 from .pages.play import PlayPage
 from .pages.settings import SettingsPage
+from .pages.tournaments import TournamentsPage
 from .pages.training import TrainingPage
 
-SECTIONS = [("Play", PlayPage), ("Bots", BotsPage), ("Training", TrainingPage),
+SECTIONS = [("Play", PlayPage), ("Tournaments", TournamentsPage), ("Bots", BotsPage), ("Training", TrainingPage),
             ("Multiplayer", MultiplayerPage), ("Settings", SettingsPage)]
 
 
